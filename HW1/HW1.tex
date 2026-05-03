@@ -1,0 +1,125 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+
+
+\begin{document}
+
+\title{Homework 1}
+\author{Jamie Meng}
+\date{\today}
+
+\maketitle
+\section*{Problem 1}
+
+The number of vertices $v(G)$ is 9.\newline
+The number of edges is $e(G)$ is 15.\newline
+The neighborhoods $N(v_1)$ is $v_7$ and $v_4$,\newline
+The neighborhoods $N(v_5)$ is $v_6$ , $v_3$ and $v_4$\newline
+$d(v_1)=2$, $d(v_5)=3$\newline
+$\delta(G)=2 $, $\Delta(G)=5 $
+
+
+
+\section*{Problem 2}
+
+The inducation is not correct. The reason is not any graph satisifing that every vertex of Graphs has at least two neighbors can be obtained throught that process. For example, a graph which consists 2 disconnected triangles satisifing that every vertex of Graphs has at least two neighbors cannot be obtained from 5 vertices graphs satisfing the property. Because it fails to prove any graph can be obtained throught that process, it fails to prove any graph have the proporty.
+\begin{tikzpicture}
+    % 定义三个点并连线
+    \draw (0,0) -- (4,0) -- (2,3) -- cycle;
+    \draw (5,0)--(9,0)--(7,3)--cycle;
+    
+    % 在顶点处画小圆圈（代表 graph 的 vertex）
+    \filldraw (0,0) circle (2pt) node[anchor=north] {v1};
+    \filldraw (4,0) circle (2pt) node[anchor=north] {v2};
+    \filldraw (2,3) circle (2pt) node[anchor=south] {v3};
+    \filldraw (5,0) circle (2pt) node[anchor=north] {v4};
+    \filldraw (9,0) circle (2pt) node[anchor=north] {v5};
+    \filldraw (7,3) circle (2pt) node[anchor=south] {v6};
+\end{tikzpicture}
+
+\section*{Problem 3}
+\subsection*{(a)}
+Base case: when n=2, there can only exist one edge to connect these 2 vertices and $\binom22 =1\le1$. So, base case is correct.\\
+Induction hypothesis: every $n-1$-vertex graph G has at most $ \binom{n-1}{2} $edges. \\
+If we have a n-vertices graph G, then we can choose one vertex in it and remove it and all edges connected to it. The maximum number of edges we can remove is the number of existing vertices which is $n-1$. And after removing, the graph become a graph G' with $n-1$ vertices, so its edges 
+$$ e\left(G^{\prime}\right)\le\binom{n-1}{2} $$
+Also we have:
+$$ e\left(G\right)-e\left(G^{\prime}\right)\le n-1 $$
+Then:$$ e\left(G\right)\le{}\binom{n-1}{2}+n-1 $$
+Then:
+$$ e\left(G\right)\le{}\binom{n-1}{2}+n-1=\frac{\left(n-1\left)\left(n-2\right.\right.\right)}{2}+\frac{2\left(n-1\right)}{2}=\frac{n\left(n-1\right)}{2}=\binom{n}{2} $$
+Then we proved the original statement.
+
+\subsection*{(b)}
+
+Basecase: If there are 2 vertices, then we can make $ V_1=\left\lbrace v_1\right\rbrace$ and $V_2=\left\lbrace v_2\right\rbrace$. Therefore, the only edge go between them. And there are at least 1 edge go between them.
+
+Induction hypothesis: For every n-1 vertices grahps there exists a partition $ V(G)=V1\cup V2 $ of its vertex-set so that at least e(G)/2 edges of G go between V1 and V2.
+
+For a n vertices graph, we can remove one vertex and the edges connected to it(denotate its number as $e_r$), then it is a n-1 vertices graph denotated as $G'$, so there exists a partition $ V(G')=V1\cup V2 $ of its vertex-set so that at least $e(G')/2 $ edges of G' go between V1 and V2. Then, we count the number of vertices in V1 and V2 that are endpoints of edges we removed previously seperately. If the number in V1 is greater, we put the removed point into V2. If the number in V2 is greater, we put the removed point into V1. If they are same, we put it in one of them. Therefore, we contructed a method to partition the original n vertices graph. In our contruction, at least $e_r/2$ edges of G go between V1 and V2. The total edges go between V1 and V2 are at least $e_r/2$+$e(G')/2$ which is $e(G)/2$. Therefore, the statement is proven. 
+
+\subsection*{(c)}
+Basecase when $v(G)=7$, $ e\left(G\right)\ge21 $. There is only one possibility which is that every vertex are connected with each other. So itself is the subgraph H, and minimum degreee is 6. It's $ \delta(H)\ge6 $.
+
+Induction hypothesis: every graph G with n-1(which $ n-1\ge7 $) vertices and at least $ e(G)\ge5\left(n-1\right)-14 $ edges contains a subgraph $ H\subseteq G $ with minimum degree at least $ \delta(H)\ge6 $.
+
+If we have a graph G with n vertices, and have at least $ e(G)\ge5\left(n\right)-14 $ edges. We can remove one vertex and all edge connected to it. Then we get a graph G' with n-1 vertices.
+
+Case 1: if grahp G's $ \delta(G)\ge6$, then gragh G itself can be the subgraph H and we are done. 
+
+Case 1: if $ \delta(G)<6 $, we remove the vertex with minimum degree and the edges connect to it(which is less then or equals to 5). Then$$ e\left(G^{\prime}\right)\ge e\left(G\right)-5 $$
+Then,
+$$ e(G')\ge5\left(n-1\right)-14 $$
+Then the remaining graph satisfying the requirement of at least $ e(G')\ge5\left(n-1\right)-14 $ edges. Then G' itself satifying the requirement of Induction hypothesis, so it contains a subgraph H with minimum degree at least $ \delta(H)\ge6 $. Because our original graph G also contain H, we are done.
+
+Both cases are proven, so the statement is true.
+
+\section*{Problem 4}
+\subsection*{(a)}
+
+Basecase: if there are 0 edges, then the sum of degree of all vertices must be 0. Therefore, $ 2e(G)=\sum_{v\in V(G)}dG(v) $
+
+Induction hypothesis: when the number of edges is n-1, $2e(G)=\sum_{v\in V(G)}dG(v)$
+
+If we have a graph G with n edges, we can remove an arbitary edge to make it become graph G' with n-1 edge. And $e(G')+1=e(G)$. Then $2e(G')=\sum_{v\in V(G')}dG'(v)$ according to the hypothesis. When we add back the removed edge, the degree of 2 vertices which the edge connected to will both increase 1 and in total 2. Then, $\sum_{v\in V(G')}dG'(v)+2=\sum_{v\in V(G)}dG(v)$.\\
+Because
+$$2e(G')=\sum_{v\in V(G')}dG'(v)$$
+Then
+$$2e(G')+2=\sum_{v\in V(G')}dG'(v)+2$$
+Then 
+$$2e(G)=\sum_{v\in V(G)}dG(v)$$
+And we are done.
+
+\subsection*{(b)}
+Basecase: if there are 1 vertex, then the sum of degree of all vertices must be 0 and the edges will also be zero.because there are no other vertices to connect to. Therefore, $2e(G)=\sum_{v\in V(G)}dG(v)$
+
+Induction hypothesis:when the number of vertices is n-1, $2e(G)=\sum_{v\in V(G)}dG(v)$.
+
+If we have a graph G with n vertices, we can remove an arbitary vertex and all edges (make the number of removed edges denotated as $e_r$) connect to it to make it become graph G' with n-1 vertices. Then $2e(G')=\sum_{v\in V(G')}dG'(v)$ according to the hypothesis. We have $e(G')+e_r=e(G)$.  When we add back removed vertex and edges, the degree of $e_r$ vertices which the edges connected to will both increase 1 and in total $e_r$. Also, the remove vertex itself has degree of $e_r$. Then, $\sum_{v\in V(G')}dG'(v)+2e_r=\sum_{v\in V(G)}dG(v)$.
+
+Because
+$$2e(G')=\sum_{v\in V(G')}dG'(v)$$
+Then
+$$2e(G')+2e_r=\sum_{v\in V(G')}dG'(v)+2e_r$$
+Then 
+$$2e(G)=\sum_{v\in V(G)}dG(v)$$
+And we are done.
+
+
+\end{document}

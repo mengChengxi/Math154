@@ -1,0 +1,42 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{graphicx}
+% \begin{figure}[htbp] % [htbp] 告诉 LaTeX 尽量放在这里、顶部、底部或单独一页
+%     \centering % 图片居中
+%     \includegraphics[width=0.5\linewidth]{filename} 
+%     \caption{这是 MATH154 HW1 的图示} % 图片下方的标题
+%     \label{fig:graph1} % 用于文中引用，比如 "如图 \ref{fig:graph1} 所示"
+% \end{figure}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newenvironment{problem}[1]
+  {\section*{Problem #1}}
+  {}
+
+
+
+\begin{document}
+
+\title{Homework 1}
+\author{Jamie Meng}
+\date{\today}
+
+\maketitle
+\section{Problem 1}
+
+
+
+\end{document}

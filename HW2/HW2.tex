@@ -1,0 +1,126 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{graphicx}
+% \begin{figure}[htbp] % [htbp] 告诉 LaTeX 尽量放在这里、顶部、底部或单独一页
+%     \centering % 图片居中
+%     \includegraphics[width=0.5\linewidth]{filename} 
+%     \caption{这是 MATH154 HW1 的图示} % 图片下方的标题
+%     \label{fig:graph1} % 用于文中引用，比如 "如图 \ref{fig:graph1} 所示"
+% \end{figure}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newenvironment{problem}[1]
+  {\section*{Problem #1}}
+  
+
+
+
+\begin{document}
+
+\title{Homework 2}
+\author{Jamie Meng}
+\date{\today}
+
+\maketitle
+\section{Problem 1}
+We can show that all statements are equivalent to statement 1. Then, they are all equvalent. 
+\subsection*{(1)}
+The statement is equivalent to itself.
+\subsection*{(2)}
+
+Prove for $\Rightarrow $:
+
+Because for every pair of vertices u, v, there exists a u, v-walk from u to v, then it contains a u, v path, then it is connected. 
+
+Prove for $\Leftarrow  $:
+
+Because G is connected, then for every pair of (two distinct) vertices \(u ,v \in G\), there exists a u, v-path between them. Then, the u-v path can also be a u, v-walk. And we are done.
+\subsection*{(3)}
+Prove for $\Rightarrow $:
+
+We can prove it by contradition. If G is not connected, then there are more then one component. Let one of them be A and rest of them be B. Then, if we partition G to 2 parts: A and B, and there must be a edge connecting them, A is not a seperate component, which is a contradition. Then if (2), then G must be connected. And we are done.
+
+Prove for $\Leftarrow  $:
+
+We can prove it by contradition. If for some partiton, there does not exist an edge between A and B, given that G is connected. Then, for a vertex u in A and a vertex v in B, there exists a u-v path. Then, the path must go from vertices in A to vertices in B. At the time the path go from a vertex in A to a vertex in B, it must go through a edge from A to B, but there does not exist it, which is a contradition. Then, if G is connected, there must exist an edge between A and B. And we are done.
+
+\subsection*{(4)}
+
+Prove for $\Rightarrow $:
+
+Because there is a walk(let's call it long walk) in G that contains every vertex of G at least once. Then, for any 2 vertices u, v in that walk, there exists a walk between them, which is a part of the long walk. Then, there exists a u-v path. Then G is connected. 
+
+Prove for $\Leftarrow  $:
+
+
+Now, I can contruct that walk if G is connected. Let us randomly pick a vertex o in G. Then, for each of other vertices in G (let them be \(v_{i}\)), there is a \(o-v_{i}\) path. Then we can make that walk go from o to \(v_{1}\), and then go back to o. After that go to  \(v_{2}\), and then go back to o. Repeat the process to cover all vertices and we can contruct that kind of path. Therefore, if G is connected, then there is a walk in G that contains every vertex of G at least once.
+
+
+
+Because G is connected, then for every pair of (two distinct) vertices \(u ,v \in G\), there exists a u, v-path between them. Then, the u-v path can also be a u, v-walk. And we are done.
+
+
+\section{Problem 2}
+\subsection{(a)}
+For any component, we can prove the number of nodes \(>\)the minimum degree in that component+1. We can look at the node with minimum degree. All node it is connecting must in same node. The number of node it is connecting is its degree. And becasue it cannot connect a node twice or connect to itself, it is connecting minimum degree of nodes in the same component. Therefore, there are at least minimum degree of nodes and the node itself in total minimum degree in that component+1. Beucase \(\delta(G)\le\)minimum degree in that component, then any component of a graph G contains at least \(\delta(G)\) many vertices.
+
+\subsection{(b)}
+Basecase: if a graph has one vertex, then \(v(G)=1\) and \(e(G)=0\), so \(v(G)-e(G)\ge1\), and base case is true.
+
+Induction hypothesis: if there are n-1 vertices then there are at least  \(v(G)-e(G)\) components.
+
+For a n vertices graph G, we can remove one vertex and all k edges connecting to it, and make become a n-1 vertices graph G'. Then, there are at least  \(v(G')-e(G')\) vertices. Then we add the vertex back, and we have
+$$v(G)-e(G)=v(G')+1-(e(G')+k)=v(G')+1-e(G')-k$$
+If k=0, the node we removed is a component, so both side of the inequation - 1, so it is still true. If \(k\ge1\), then 
+$$v(G)-e(G)\ge v(G')-e(G')$$
+and because the number of components won't change, the statement is also true for n.
+
+And we are done.
+\subsection{(c)}
+What we need to prove is for a not connected graph, its complement is connected. We can prove it by induction.
+
+Base case: a smallest not connected graph is a graph with 2 vertex and no edge, and it complement is connected.
+
+Induction hypothesis: for a n-1 vertices unconnected graph, its complement is connected.
+
+For a unconnected graph with n vertices, we can remove one vertex and all edges connecting on it.
+
+Case 1: If we can remove from the component with more than one vertices. Then we get a graph with n-1 vertices, and its complement is connected. Then, we add the node back, because it only connect the vertices in its own component, and it does not connect the vertices in other component. Then, in the complement it will connect them. Because the original complement is connected, there exists paths between any 2 vertices. And becasue the new vertex connected some or one of these node. Then the path, between the new vertex and any of old ones, is new vertex - one original vertex - any of old ones. Therefore, the graph is still connected.
+
+Case 2: If we cannot remove from the component with more than one vertices, which means all components has only 1 vertex, then its complement is a graph with all vertices connecting to each other, which is connected.
+
+
+After that we can see that both the graph and its complement is not connected is impossible, becasue if one is not connected and the other must be connected. Therefore, at least one of G or $\bar{G} $ is connected.
+
+\section{Problem 3}
+\subsection{(a)}
+Consider the longest path.
+We can exam the end point of the path. All vertices it connects to must in that path, because it not, the path is not the longest one. Because it connected to at least $\delta(G)$ vertices due to the definition of $\delta(G)$, the vertices in the path except itself must greater than or equals to $\delta(G)$. Therefore, the number of vertices in the path including itself must greater than or equals to $\delta(G)+1$. And we are done.
+\subsection{(b)}
+Consider a partition $V1\uplus V2$ that maximizes the total number of edges crossing between V1 and V2. If a vertex had more neighbors in its own partition than in the other, then if we put it to the other partition, we can created a new one with more edges crossing V1 and V2, so it is impossible. Therefore, for all vertices, greater than or equal to half of its edges are crossing the partition. Therefore, in total at least e(G)/2 edges of G go between V1 and V2.
+
+\subsection{(c)}
+Consider the shortest odd cycle C, if it is not a induced cycle, then there exist a edge between 2 not adjacent vertices. Then, there are 2 new cycles with one of them must has odd number of vertices.
+
+Prove: Excepting 2 shared vertices, the cycle C still has odd number of vertices, and we need to divide them into 2 parts. And the only possiblility is one with odd vertices and one with even ones. Then, we put 2 shared vertices back to each small cycle and the odd small cycle will still has odd number of vertices.
+
+Therefore, C is not the smallest odd cycle because there is a smaller one. Therefore, the shortest odd cycle must be an induced cycle.
+
+
+
+
+
+\end{document}
